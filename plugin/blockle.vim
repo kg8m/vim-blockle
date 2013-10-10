@@ -13,6 +13,10 @@ if (exists("g:loaded_blockle") && g:loaded_blockle) || &cp
 endif
 let g:loaded_blockle = 1
 
+if !exists("g:blockle_erase_spaces_around_starting_brace")
+  let g:blockle_erase_spaces_around_starting_brace = 0
+endif
+
 let s:cpo_save = &cpo
 set cpo&vim
 
@@ -97,8 +101,10 @@ function! s:ConvertDoEndToBrackets()
   let before_do_str = strpart(line, 0, do_pos[2] - 1)
   let after_do_str  = strpart(line, do_pos[2] - 1)
 
-  let before_do_str = substitute(before_do_str, '\s\+$', '', '')
-  let after_do_str  = substitute(after_do_str, '^\s\+|', '|', '')
+  if g:blockle_erase_spaces_around_starting_brace
+    let before_do_str = substitute(before_do_str, '\s\+$', '', '')
+    let after_do_str  = substitute(after_do_str, '^\s\+|', '|', '')
+  endif
 
   call setline(begin_num, before_do_str . "{" . after_do_str)
 
