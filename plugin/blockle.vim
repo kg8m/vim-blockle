@@ -97,6 +97,9 @@ function! s:ConvertDoEndToBrackets()
   let before_do_str = strpart(line, 0, do_pos[2] - 1)
   let after_do_str  = strpart(line, do_pos[2] - 1)
 
+  let before_do_str = substitute(before_do_str, '\s\+$', '', '')
+  let after_do_str  = substitute(after_do_str, '^\s\+|', '|', '')
+
   call setline(begin_num, before_do_str . "{" . after_do_str)
 
   if lines == 3
