@@ -51,7 +51,12 @@ which would additionally map Super-J (Cmd-J on Mac OS) to the toggling function.
 VARIABLES                                              *blockle-variables*
 
 g:blockle_erase_spaces_around_starting_brace           *g:blockle_erase_spaces_around_starting_brace*
-		If this variable is true, spaces around the starting brase are erased as following:
+
+If this variable is true, spaces around the starting brase are erased.
+Its default value is 0.
+
+For example, if you set the g:blockle_erase_spaces_around_starting_brace variable as true
+and have the following ruby code (* indicates cursor position):
 >
   ['one', 'two'].each d*o |number|
     puts number + "!"
