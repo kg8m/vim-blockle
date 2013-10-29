@@ -65,12 +65,13 @@ function! s:ConvertBracketsToDoEnd()
     call setpos('.', begin_pos)
     exe "norm! ".end_of_line."a\<cr>"
     call setpos('.', begin_pos)
-    if search('do|', 'c', begin_num)
-      :.s/do|/do |/
-      call setpos('.', begin_pos)
-    endif
   else
     norm! send
+    call setpos('.', begin_pos)
+  endif
+
+  if search('do|', 'c', begin_num)
+    :.s/do|/do |/
     call setpos('.', begin_pos)
   endif
 endfunction
